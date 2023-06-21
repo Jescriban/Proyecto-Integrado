@@ -1,0 +1,9 @@
+---
+- name: Configurar netplan en esfhblcub01
+  ansible.builtin.import_playbook: ./playbooks/esfhblcub01-netplan.yaml
+- name: Configurar netplan en esfhblcub02
+  ansible.builtin.import_playbook: ./playbooks/esfhblcub02-netplan.yaml
+- name: Configurar netplan en esfhblcub03
+  ansible.builtin.import_playbook: ./playbooks/esfhblcub03-netplan.yaml
+- name: Configurar netplan en esfhblcub04
+  ansible.builtin.import_playbook: ./playbooks/esfhblcub04-netplan.yaml

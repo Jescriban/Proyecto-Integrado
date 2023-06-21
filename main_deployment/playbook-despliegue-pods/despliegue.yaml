@@ -1,0 +1,16 @@
+- hosts: 'workers, masters'
+
+  tasks:
+#    - name: Crear el contenedor de jekyll
+#      shell: docker-compose up -d -f 
+    - name: Crear Persistent volume para apache
+      shell: kubectl apply -f ./manifests/pv-wiki-site.yaml
+
+    - name: Crear Persistent Volume Claim para apache
+      shell: kubectl apply -f ./manifests/pvc-wiki-site.yaml
+
+    - name: Desplegar pods
+      shell: kubectl apply -f ./manifests/deployment-jekyll-apache.yaml
+
+    - name: Crear y desplegar Load Balancer
+      shell: kubectl apply -f ./manifests/service-balancer-wiki.yaml

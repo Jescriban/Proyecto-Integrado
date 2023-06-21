@@ -1,0 +1,16 @@
+---
+- hosts: 192.168.0.46
+  remote_user: eshbam01
+  become: true
+  tasks:
+    - name: Configurar netplan en esfhblcub02
+      ansible.builtin.copy:
+        src: ./Cluster-netplan-config/esfhblcub02.yaml
+        dest: /etc/netplan/esfhblcub02.yaml
+        owner: eshbam01
+        group: eshbam01
+        mode: '0644'
+    - name: Aplicar cambios netplan
+      command: netplan apply
+      async: 45
+      poll: 0

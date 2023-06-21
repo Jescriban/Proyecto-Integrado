@@ -1,0 +1,9 @@
+---
+- name: Crear usuario kube
+  ansible.builtin.import_playbook: ./playbooks/users.yaml
+- name: instalar kubernetes
+  ansible.builtin.import_playbook: ./playbooks/instalar-kubernetes.yaml
+- name: crear nodo master
+  ansible.builtin.import_playbook: ./playbooks/crear-master.yaml
+- name: Crear nodos workers
+  ansible.builtin.import_playbook: ./playbooks/crear-workers.yaml

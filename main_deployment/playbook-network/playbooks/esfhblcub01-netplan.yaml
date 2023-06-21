@@ -1,0 +1,18 @@
+---
+- hosts: 192.168.0.45
+  remote_user: eshbam01
+  become: true
+  tasks:
+    - name: Include a play after another play
+      ansible.builtin.import_playbook: otherplays.yaml
+    - name: Configurar netplan en esfhblcub01
+      ansible.builtin.copy:
+        src: ./Cluster-netplan-config/esfhblcub01.yaml
+        dest: /etc/netplan/esfhblcub01.yaml
+        owner: eshbam01
+        group: eshbam01
+        mode: '0644'
+    - name: Aplicar cambios netplan
+      command: netplan apply
+      async: 45
+      poll: 0

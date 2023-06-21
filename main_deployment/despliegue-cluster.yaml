@@ -1,0 +1,7 @@
+---
+
+- name: Lanzar playbook docker
+  ansible.builtin.import_playbook: ./playbook-docker/docker-main.yaml
+
+- name: Lanzar playbook kubernetes
+  ansible.builtin.import_playbook: ./playbook-kubernetes/kubernetes-main.yaml

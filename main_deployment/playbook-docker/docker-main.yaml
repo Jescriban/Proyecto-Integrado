@@ -1,0 +1,9 @@
+- hosts: "masters, workers"
+  become: yes
+  tasks:
+    - name: Comprobar updates
+      shell: sudo apt-get update -y
+    - name: install docker.io
+      shell: sudo apt install -y docker.io
+    - name: install docker-compose
+      shell: sudo apt install -y docker-compose

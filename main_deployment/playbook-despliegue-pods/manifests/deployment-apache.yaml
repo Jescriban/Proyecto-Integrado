@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiki-deployment
+  labels:
+    app: wiki
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wiki
+  template:
+    metadata:
+      labels:
+        app: wiki
+    spec:
+      containers:
+      - name: httpd
+        image: httpd:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: wiki-site
+          mountPath: "/usr/local/apache2/htdocs"
+      volumes:
+        - name: wiki-site
+          persistentVolumeClaim:
+            claimName: pvc-wiki-site
