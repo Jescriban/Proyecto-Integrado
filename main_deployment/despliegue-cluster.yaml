@@ -5,3 +5,7 @@
 
 - name: Lanzar playbook kubernetes
   ansible.builtin.import_playbook: ./playbook-kubernetes/kubernetes-main.yaml
+
+- name: Lanzar playbook despliegue de servicios
+  ansible.builtin.import_playbook: ./playbook-despliegue-pods/despliegue.yaml
+
