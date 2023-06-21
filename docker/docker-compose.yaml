@@ -1,0 +1,8 @@
+version: "2.2"
+services:
+  jekyll-wiki:
+    image: jekyll-wiki:latest
+    container_name: pb_jekyll-wiki
+    volumes:
+      - /wiki:/wiki
+    restart: unless-stopped

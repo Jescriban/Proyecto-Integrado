@@ -1,0 +1,19 @@
+# RUBY + ALPINE
+FROM ruby:3.2.2-alpine3.17
+# ACTUALIZAR Y DEPENDENCIAS
+RUN apk update
+RUN apk add --no-cache build-base gcc make git
+# ACTUALIZA RUBY E INSTALA JEKYLL
+RUN apk add ruby-dev
+RUN gem update bundler
+RUN gem install bundler jekyll
+# COPIAR LA CARPETA PREBUILT
+RUN mkdir /wiki
+COPY ./wiki-prebuilt/ /wiki/
+# BUILDEAR
+RUN echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+RUN echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
+RUN echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+RUN source ~/.bashrc
+RUN cd /wiki && bundle install
+ENTRYPOINT cd /wiki && bundle exec jekyll build --future --watch && /bin/sh
