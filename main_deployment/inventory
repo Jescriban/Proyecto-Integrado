@@ -5,9 +5,3 @@ master ansible_host=esfhblcub04.lc.pi ansible_user=eshbam01
 worker1 ansible_host=esfhblcub01.lc.pi ansible_user=eshbam01
 worker2 ansible_host=esfhblcub02.lc.pi ansible_user=eshbam01
 worker3 ansible_host=esfhblcub03.lc.pi ansible_user=eshbam01
-
-[all:vars]
-ansible_connection=ssh
-ansible_ssh_user=eshbam01
-ansible_ssh_pass=ubuntu
-ansible_become_password=ubuntu
